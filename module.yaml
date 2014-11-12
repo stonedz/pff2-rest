@@ -1,0 +1,11 @@
+name: pff2-rest
+version: "0.1"
+desc: Rest API
+class: Pff2Rest
+requires:
+  - exception_handler
+  - pff2-annotations
+  - pff2-permissions
+requires_php_extension:
+  - apc
+runBefore: pff2-permissions

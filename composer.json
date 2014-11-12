@@ -1,0 +1,28 @@
+{
+	"name": "stonedz/pff2-rest",
+	"type": "pff2-module",
+	"description": "Creates REST controllers in pff2",
+	"license": "MIT",
+    "minimum-stability": "dev",
+	"keywords": [
+		"pff2", "module", "api", "rest"
+	],
+	"authors": [
+		{
+			"name": "Paolo Fagni",
+			"email": "paolo.fagni@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"homepage": "https://github.com/stonedz/pff2-rest",
+	"require": {
+		"stonedz/pff2-installers": "*",
+        "stonedz/pff-annotations": "1.*",
+        "stonedz/pff-permissions": "1.*"
+	},
+    "autoload": {
+        "psr-4": {
+            "pff\\modules\\": "src/"
+        }
+    }
+}

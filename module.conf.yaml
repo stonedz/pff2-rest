@@ -1,0 +1,7 @@
+moduleConf:
+  annotationName: Rest
+  enableAuth: true
+  authType: token
+  authClass: \\pff\\models\\ApiAuthCkecker
+  apiVersions:
+    - api1
