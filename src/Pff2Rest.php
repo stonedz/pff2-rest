@@ -23,11 +23,6 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
 
     private $isRest = false;
 
-    /**
-     * @var Reader
-     */
-    private $reader;
-
     private $annotationName;
     /**
      * @var array
@@ -42,7 +37,6 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
 
     public function __construct($confFile = 'pff2-rest/module.conf.local.yaml') {
         $this->loadConfig($confFile);
-        $this->reader = new Reader(new Parser(), new ApcCache());
     }
 
     /**
