@@ -7,9 +7,8 @@
 
 namespace pff\modules\Exception;
 
-
 use pff\Exception\PffException;
 
-class RestException extends PffException {
-
-} 
+class RestException extends PffException
+{
+}

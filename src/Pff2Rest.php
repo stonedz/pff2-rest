@@ -7,20 +7,16 @@
 
 namespace pff\modules;
 
-use Minime\Annotations\Cache\ApcCache;
-use Minime\Annotations\Parser;
-use Minime\Annotations\Reader;
 use pff\Abs\AModule;
 use pff\Core\Outputs\JSONOut;
 use pff\Iface\IBeforeHook;
 use pff\Iface\IBeforeSystemHook;
-use pff\Iface\IBeforeViewHook;
 use pff\Iface\IConfigurableModule;
 use pff\modules\Core\RestView;
 use pff\modules\Iface\IRestAuth;
 
-class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBeforeSystemHook{
-
+class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBeforeSystemHook
+{
     private $isRest = false;
 
     private $annotationName;
@@ -35,7 +31,8 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
 
     private $authClass;
 
-    public function __construct($confFile = 'pff2-rest/module.conf.local.yaml') {
+    public function __construct($confFile = 'pff2-rest/module.conf.local.yaml')
+    {
         $this->loadConfig($confFile);
     }
 
@@ -43,7 +40,8 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
      * @param array $parsedConfig
      * @return mixed
      */
-    public function loadConfig($parsedConfig) {
+    public function loadConfig($parsedConfig)
+    {
         $conf = $this->readConfig($parsedConfig);
         $this->annotationName = $conf['moduleConf']['annotationName'];
         $this->apiversions    = $conf['moduleConf']['apiVersions'];
@@ -52,7 +50,8 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
         $this->authClass      = $conf['moduleConf']['authClass'];
     }
 
-    public function manageExceptionsRest(\Exception $exception) {
+    public function manageExceptionsRest(\Exception $exception)
+    {
         $this->_controller->setOutput(new JSONOut());
         $this->_controller->resetViews();
         $code = (int)$exception->getCode();
@@ -69,13 +68,14 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
      *
      * @return mixed
      */
-    public function doBefore() {
+    public function doBefore()
+    {
         /** @var Pff2Annotations $reader */
         $reader = $this->_controller->loadModule('pff2-annotations');
         $isRestController = is_a($this->_controller, 'pff\modules\\Iface\\IRestController');
         if ($isRestController || $reader->getMethodAnnotation($this->annotationName)) {
             $this->isRest = true;
-            if($this->authEnabled) {
+            if ($this->authEnabled) {
                 $validatorName = '\pff\models\\'.$this->authClass;
                 /** @var IRestAuth $validator */
                 $validator = new $validatorName();
@@ -87,7 +87,7 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
         }
         $verb = $_SERVER['REQUEST_METHOD'];
 
-        if($isRestController){
+        if ($isRestController) {
             switch ($verb) {
                 case 'GET':
                     $this->getApp()->setAction('getHandler');
@@ -110,16 +110,17 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
      *
      * @return mixed
      */
-    public function doBeforeSystem() {
+    public function doBeforeSystem()
+    {
         $tmpUrl = $this->_app->getUrl();
         $tmpUrl = explode('/', $tmpUrl);
-        if( in_array(strtolower($tmpUrl[0]), $this->apiversions)) {
+        if (in_array(strtolower($tmpUrl[0]), $this->apiversions)) {
             $tmpApi = $tmpUrl[0];
             array_shift($tmpUrl);
             $tmpController = $tmpUrl[0];
             array_shift($tmpUrl);
-            $this->_app->setUrl(ucfirst($tmpApi).'_'.ucfirst($tmpController).'/index/'.implode('/',$tmpUrl));
-            set_exception_handler(array($this, 'manageExceptionsRest'));
+            $this->_app->setUrl(ucfirst($tmpApi).'_'.ucfirst($tmpController).'/index/'.implode('/', $tmpUrl));
+            set_exception_handler([$this, 'manageExceptionsRest']);
         }
     }
 }
