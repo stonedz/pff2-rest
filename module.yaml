@@ -6,6 +6,4 @@ requires:
   - exception_handler
   - pff2-annotations
   - pff2-permissions
-requires_php_extension:
-  - apc
 runBefore: pff2-permissions
