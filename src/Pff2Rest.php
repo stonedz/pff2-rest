@@ -59,7 +59,7 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
 
         $view = new RestView();
         $view->set('error', true);
-        $view->set('message', $exception->getMessage());
+        $view->set('message', $exception->getMessage().' '.$exception->getFile().'::'.$exception->getLine());
         $view->render();
     }
 
