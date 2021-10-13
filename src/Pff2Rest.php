@@ -50,7 +50,7 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
         $this->authClass      = $conf['moduleConf']['authClass'];
     }
 
-    public function manageExceptionsRest(\Exception $exception)
+    public function manageExceptionsRest(\Throwable $exception)
     {
         $this->_controller->setOutput(new JSONOut());
         $this->_controller->resetViews();
