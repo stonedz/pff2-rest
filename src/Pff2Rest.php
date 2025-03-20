@@ -90,6 +90,9 @@ class Pff2Rest extends AModule implements IConfigurableModule, IBeforeHook, IBef
 
         if ($isRestController) {
             switch ($verb) {
+                case 'OPTIONS':
+                    http_response_code(200);
+                    exit;
                 case 'GET':
                     $this->getApp()->setAction('getHandler');
                     break;
