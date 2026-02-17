@@ -43,10 +43,10 @@ class RestView extends AView
     /**
      * Returns the rendered HTML without output to browser
      *
-     * @return mixed
+     * @return string
      */
     public function renderHtml(): string
     {
-        return false;
+        return '';
     }
 }
