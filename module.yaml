@@ -4,6 +4,5 @@ desc: Rest API
 class: Pff2Rest
 requires:
   - exception_handler
-  - pff2-annotations
   - pff2-permissions
 runBefore: pff2-permissions

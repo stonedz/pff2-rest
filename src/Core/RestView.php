@@ -23,9 +23,9 @@ class RestView extends AView
     /**
      * Sets a value to be passed to a View
      *
-     * @return mixed
+     * @return void
      */
-    public function set($name, $value)
+    public function set(string $name, mixed $value): void
     {
         $this->_data[$name] = $value;
     }
@@ -35,7 +35,7 @@ class RestView extends AView
      *
      * @return mixed
      */
-    public function render()
+    public function render(): void
     {
         echo trim(json_encode($this->_data));
     }
@@ -45,7 +45,7 @@ class RestView extends AView
      *
      * @return mixed
      */
-    public function renderHtml()
+    public function renderHtml(): string
     {
         return false;
     }
