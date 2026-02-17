@@ -7,9 +7,8 @@
 
 namespace pff\modules\Iface;
 
-
-interface IRestController {
-
+interface IRestController
+{
     public function getHandler();
 
     public function postHandler();
@@ -17,5 +16,4 @@ interface IRestController {
     public function putHandler();
 
     public function deleteHandler();
-
 }

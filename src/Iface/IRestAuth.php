@@ -9,7 +9,7 @@ namespace pff\modules\Iface;
 
 use pff\Iface\IController;
 
-interface IRestAuth {
-
+interface IRestAuth
+{
     public function authorize(IController $controller);
-} 
+}

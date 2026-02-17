@@ -3,9 +3,12 @@
 	"type": "pff2-module",
 	"description": "Creates REST controllers in pff2",
 	"license": "MIT",
-    "minimum-stability": "dev",
+	"minimum-stability": "dev",
 	"keywords": [
-		"pff2", "module", "api", "rest"
+		"pff2",
+		"module",
+		"api",
+		"rest"
 	],
 	"authors": [
 		{
@@ -17,12 +20,19 @@
 	"homepage": "https://github.com/stonedz/pff2-rest",
 	"require": {
 		"stonedz/pff2-installers": "*",
-        "stonedz/pff2-annotations": "2.*",
-        "stonedz/pff2-permissions": "2.*"
+		"stonedz/pff2-permissions": "^4"
 	},
-    "autoload": {
-        "psr-4": {
-            "pff\\modules\\": "src/"
-        }
-    }
+	"require-dev": {
+		"stonedz/pff2": "^4"
+	},
+	"autoload": {
+		"psr-4": {
+			"pff\\modules\\": "src/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"stonedz/pff2-installers": true
+		}
+	}
 }
